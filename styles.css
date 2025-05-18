@@ -1,0 +1,235 @@
+
+body {
+    font-family: "Quicksand", serif;
+    font-optical-sizing: auto;
+    font-weight:400;
+    font-style: normal;
+
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    background-color:#367847;
+
+    /* moves the block */
+    padding-top: 2%;
+    padding-right: 0%;
+}
+
+
+.container {
+    justify-content: center;
+    align-items: center;
+    box-shadow: none;
+    background-color:#367847;
+    border-radius: 2%;
+    min-height: 100px;
+    margin-top: 50px;
+    max-width: 600px;
+    position: relative;
+}
+
+.container-title {
+    color: rgb(177, 29, 29);
+    text-align: center;
+    font-size: 20px;
+    font-weight: 550;
+    text-shadow: #a745459f 1px 1px 1px;
+    padding: 18px 10px 10px 10px;
+    margin: 0 0 20px 0; /* 20px space below the title */
+}
+
+#pointsForm {
+  background: #fafdff;
+  border-radius: 18px;
+  box-shadow: 0 5px 10px rgba(0,0,0,0.15);
+  padding: 2.5em 2em 2em 2em;
+  width: 350px;
+  text-align: center;
+  position: relative;
+}
+
+#pointsForm::before {
+  content: "";
+  display: block;
+  width: 80px;
+  height: 80px;
+  background-image: url('football.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  position: absolute;
+  top: -2.5em;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 50%;
+}
+
+
+h2 {
+  color: #367847;
+  margin-bottom: 1.2em;
+  letter-spacing: 1px;
+  font-weight: 700;
+}
+
+label {
+  display: block;
+  margin: 1.2em 0 0.5em 0;
+  color: #222;
+  font-weight: 500;
+  text-align: left;
+}
+
+input[type="number"] {
+  width: 90%;
+  padding: 0.6em;
+  border: 2px solid #367847;
+  border-radius: 7px;
+  font-size: 1em;
+  margin-bottom: 0.5em;
+  background: #f8fff8;
+  transition: border-color 0.2s;
+}
+
+input[type="number"]:focus {
+  border-color: #FFD700;
+  outline: none;
+}
+
+.button-row {
+  margin-top: 1.5em;
+  display: flex;
+  justify-content: center;
+  gap: 1em;
+}
+
+button {
+  background-color: #f9e67a;
+  color: #2c2b2b;
+  border: none;
+  border-radius: 7px;
+  padding: 0.7em 1.5em;
+  font-size: 1em;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(34,34,34,0.08);
+  transition: background 0.2s, color 0.2s;
+}
+
+button:hover {
+  background-color: #2c5e39;
+  color: #fff;
+}
+
+#output {
+  margin-top: 1em;
+  margin-bottom: 3em;
+  font-weight: bold;
+  color: #2d382f;
+  background: #fafdff;
+  box-shadow: 0 5px 10px rgba(40, 40, 40, 0.15);
+  border-radius: 8px;
+  padding: 1em;
+  min-height: 2em;
+  max-width: 380px;
+}
+
+/* When text on page is drag-selected with cursor */
+::selection {
+    background-color: rgb(134, 94, 44);
+    color: rgb(248, 246, 139);
+}
+
+.info-tooltip {
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 0.7em;
+  position: relative;
+  display: inline-block;
+  margin-left: 8px;
+  vertical-align: middle;
+}
+
+.info-tooltip button {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 0.7em;
+  background: #FFD700;
+  color: #222;
+  border: none;
+  border-radius: 50%;
+  width: 22px;
+  height: 22px;
+  font-weight: bold;
+  font-size: 1em;
+  cursor: pointer;
+  padding: 0;
+  line-height: 22px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+  transition: background 0.2s;
+}
+
+.info-tooltip button:hover,
+.info-tooltip button:focus {
+  background: #0b6623;
+  color: #fff;
+}
+
+.tooltip-text {
+  visibility: hidden;
+  opacity: 0;
+  width: 260px;
+  background: #222;
+  color: #fff;
+  text-align: left;
+  border-radius: 6px;
+  padding: 10px;
+  position: absolute;
+  z-index: 10;
+  bottom: 125%; /* Position above the button */
+  left: 50%;
+  transform: translateX(-50%);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  font-size: 0.95em;
+  transition: opacity 0.2s;
+  pointer-events: none;
+}
+
+.info-tooltip:hover .tooltip-text,
+.info-tooltip:focus-within .tooltip-text {
+  visibility: visible;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+
+/* @media queries for a responsive experience */
+/* For small mobile devices */
+@media screen and (max-width: 480px) {
+    .container-title {
+        font-size: 20px; /* Smaller font for small screens */
+        top: -20px;      /* Adjust position */
+        text-shadow: 1px 1px 1px black; /* Lighter shadow */
+    }
+}
+
+/* For tablets */
+@media screen and (min-width: 481px) and (max-width: 768px) {
+    .container-title {
+        font-size: 20px; /* Slightly smaller than default */
+        top: -30px;      /* Adjust position */
+    }
+}
+
+/* For laptops and desktops */
+@media screen and (min-width: 769px) and (max-width: 1200px) {
+    .container-title {
+        font-size: 20px; /* Larger font for larger screens */
+    }
+}
+
+/* For wide PC screens */
+@media screen and (min-width: 1201px) {
+    .container-title {
+        font-size: 21px; /* Bigger font for wide screens */
+        top: -10px;      /* Consistent placement */
+    }
+}

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>eFootball Points Calculator</title>
+  <link rel="icon" type="image/x-icon" href="football-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Covered+By+Your+Grace&family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+
+</head>
+<body>
+    <div class="container">
+        <form id="pointsForm" onsubmit="event.preventDefault(); calculatePoints();">
+          <header class="container-title">eFootball Points Calculator <span class="info-tooltip">
+            <button type="button" aria-label="Calculator description">i</button>
+            <span class="tooltip-text">
+              Calculate the points needed to reach your desired eFootball player rating, based on your current rating, goal, increment, and available points.
+            </span>
+          </span> </header>
+
+          <label>Starting Point:
+            <input type="number" id="start_point" min="0" required>
+          </label>
+          <label>Goal Point:
+            <input type="number" id="goal_point" min="0" required>
+          </label>
+          <label>Increment Point (1 is default):
+            <input type="number" id="increment" min="1" value="1" required>
+          </label>
+          <label>Total Available Points:
+            <input type="number" id="available_points" min="0" required>
+          </label>
+          <div class="button-row">
+            <button type="submit">Calculate</button>
+            <button type="button" onclick="resetForm()">Reset</button>
+          </div>
+        </form>
+        <div id="output"></div>
+    </div>
+  </body>
+
+  <script>
+    function isNumerical(value) {
+      // Checks if value is a non-negative integer
+      return Number.isInteger(Number(value)) && Number(value) >= 0;
+    }
+
+    function calculatePoints() {
+      let start_point = Number(document.getElementById('start_point').value);
+      let goal_point = Number(document.getElementById('goal_point').value);
+      let increment = Number(document.getElementById('increment').value);
+      let available_points = Number(document.getElementById('available_points').value);
+      let output = document.getElementById('output');
+
+      // Input validation
+      if (!isNumerical(start_point)) {
+        output.textContent = "Invalid input. Starting point must be a non-negative integer.";
+        return;
+      }
+      if (!isNumerical(goal_point) || goal_point < start_point || goal_point === start_point) {
+        output.textContent = "Invalid input. Goal point must be a non-negative integer and greater than starting point.";
+        return;
+      }
+      if (!isNumerical(increment) || increment < 1) {
+        output.textContent = "Invalid input. Increment point must be an integer at least 1.";
+        return;
+      }
+      if (!isNumerical(available_points)) {
+        output.textContent = "Invalid input. Available points must be a non-negative integer.";
+        return;
+      }
+
+      // Calculation logic (mirrors your C code)
+      let result = 0;
+      let current = start_point;
+      let inc = increment;
+
+      while (true) {
+        for (let i = 0; i < 4; i++) {
+          current += 1;
+          result += inc;
+          if (current >= goal_point) {
+            displayResult(result, available_points, output);
+            return;
+          }
+        }
+        inc += 1;
+      }
+    }
+
+    function displayResult(total_points, available_points, output) {
+      output.innerHTML = `Total points needed: <b>${total_points}</b><br>`;
+      let remaining_points = available_points - total_points;
+      if (total_points < 0) {
+        output.innerHTML += "Error in calculation.<br>";
+      } else if (remaining_points < 0) {
+        output.innerHTML += `You do <b>not</b> have enough points to reach the goal point.`;
+      } else {
+        output.innerHTML += `Points remaining after reaching goal: <b>${remaining_points}`;
+      }
+    }
+
+    function resetForm() {
+      document.getElementById('pointsForm').reset();
+      // Set increment back to 1 (if you want this as the default)
+      document.getElementById('increment').value = '1';
+      // Clear the output
+      document.getElementById('output').textContent = '';
+    }
+  </script>
+</body>
+</html>
