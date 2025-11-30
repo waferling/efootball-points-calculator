@@ -9,10 +9,11 @@ Try it [here.](https://waferling.github.io/efootball-points-calculator/)
 * JavaScript
 
 ## :rocket: Features
-* Custom point selection
-* Displaying clear-cut results based on each case
 * Support for dark mode
-
+* Custom point selection
+* Info button (i) with details
+* Displaying clear-cut results based on each case
+  
 ## :pushpin: The Process
 It was a regular Sunday morning. My dad then came up to me and started talking about point increases in his favorite game: eFootball. He told me how earned points could be spent on football players to upgrade their stats like passing, defending, dexterity, but it _wasn’t_ a linear system. After every 4 points that were spent, you'd have to spend 1 extra point from then on, and it would keep going up. I knew that there could be a formula then, and he agreed that this could be done with some programming. It sounded interesting and I knew it would be a nice exercise for my brain. Plus, the fact that this was a real-world scenario made it all the more gratifying.
 
